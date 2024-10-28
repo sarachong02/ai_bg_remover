@@ -1,12 +1,30 @@
+// import mongoose from "mongoose";
+
+// const connectDB = async () => {
+
+//     mongoose.connection.on('connected',() => {
+//         console.log("Database connected")
+//     })
+
+//     await mongoose.connect(`${process.env.MONGODB_URI}/bg-removal`)
+// }
+
+// export default connectDB
+
 import mongoose from "mongoose";
 
+let isConnected = false;
+
 const connectDB = async () => {
+  if (isConnected) return;
 
-    mongoose.connection.on('connected',() => {
-        console.log("Database connected")
-    })
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+    isConnected = true;
+    console.log("Database connected");
+  } catch (error) {
+    console.error("Could not connect to MongoDB", error);
+  }
+};
 
-    await mongoose.connect(`${process.env.MONGODB_URI}/bg-removal`)
-}
-
-export default connectDB
+export default connectDB;
