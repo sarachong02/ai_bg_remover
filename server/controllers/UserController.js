@@ -28,7 +28,10 @@ const clerkWebhooks = async (request, response) => {
                     photo: data.image_url
                 }
 
+                const start = Date.now()
+
                 await UserModel.create(userData)
+                console.log(`Create User Duration: ${Date.now() - start} ms`);
                 response.json({})
 
                 break;
@@ -41,7 +44,7 @@ const clerkWebhooks = async (request, response) => {
                     photo: data.image_url
                 }
 
-                await UserModel.fineOneAndUpdate({clerkId:data.id},userData)
+                await UserModel.findOneAndUpdate({clerkId:data.id},userData)
                 response.json({})
 
                 break;
