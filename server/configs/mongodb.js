@@ -19,7 +19,7 @@ const connectDB = async () => {
   if (isConnected) return;
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(`${process.env.MONGODB_URI}/bg-removal`);
     isConnected = true;
     console.log("Database connected");
   } catch (error) {
