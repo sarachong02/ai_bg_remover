@@ -8,30 +8,14 @@ export const AppContext = createContext()
 
 const AppContextProvider = (props) => {
     
-    const [credit, setCredit] = useState(false)
     const [image, setImage] = useState(false)
     const [resultImage, setResultImage] = useState(false)
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL
     const navigate = useNavigate()
 
     const { getToken } = useAuth()
     const { isSignedIn } = useUser()
     const { openSignIn } = useClerk()
-
-    const loadCreditsData = async () => {
-        try {
-            const token = await getToken()
-            const {data} = await axios.get(backendUrl+'/api/user/credits',{headers:{token}})
-            if (data.success) {
-                setCredit(data.credits)
-                console.log(data.credits)
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error(error.message)
-        }
-    }
 
     const removeBg = async (image) => {
         try {
@@ -46,14 +30,32 @@ const AppContextProvider = (props) => {
             const token = await getToken()
 
             const formData = new FormData()
-            image && formData.append('image', image)
+            image && formData.append('image_file', image)
 
-            const {data} = await axios.post(backendUrl+'/api/image/remove-bg',formData, {headers:{token}})
+            const response = await axios.post('https://clipdrop-api.co/remove-background/v1',formData, 
+                {
+                    headers:{'x-api-key': import.meta.env.VITE_CLIPDROP_API_KEY}, 
+                    responseType: 'arraybuffer'
+                })
 
-            if (data.success) {
-                setResultImage(data.resultImage)
+            // const base64Image = FileReader.from(data, 'binary').toString('base64');
+            // const base64Image = btoa(String.fromCharCode(...new Uint8Array(response.data)));
+            // const resultImageUrl = `data:${image.type};base64,${base64Image}`;
+
+            const blob = new Blob([response.data], { type: image.type });
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                const resultImageUrl = reader.result; // This is your base64 data URL
+                setResultImage(resultImageUrl);
+            };
+
+            reader.readAsDataURL(blob);
+
+            if (response.data.success) {
+                setResultImage(resultImageUrl)
             } else {
-                toast.error(data.message)
+                toast.error(response.data.message)
             }
 
 
@@ -64,9 +66,6 @@ const AppContextProvider = (props) => {
     }
 
     const value = {
-        credit,setCredit,
-        loadCreditsData,
-        backendUrl,
         image, setImage, 
         removeBg,
         resultImage, setResultImage

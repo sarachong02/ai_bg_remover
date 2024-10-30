@@ -8,13 +8,9 @@ const Navbar = () => {
 
   const { openSignIn } = useClerk()
   const { isSignedIn, user } = useUser()
-  const {credit, loadCreditsData} = useContext(AppContext)
 
   useEffect(() => {
     console.log("User signed in:", isSignedIn);
-    if (isSignedIn) {
-      loadCreditsData()
-    }
   },[isSignedIn])
 
   return (
