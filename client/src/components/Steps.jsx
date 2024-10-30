@@ -4,7 +4,7 @@ import { assets } from '../assets/assets'
 const Steps = () => {
   return (
     <div className='mx-4 lg:mx-44 py-20 xl:py-40'>
-        <h1 className='text-center text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text text-transparent'>
+        <h1 className='text-center text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold bg-gradient-to-r from-blue-800 to-indigo-900 bg-clip-text text-transparent'>
             Steps to remove the background <br />to your image. 
         </h1>
         <div className='flex items-start flex-wrap gap-4 mt-16 xl:mt-24 justify-center'>
@@ -12,7 +12,7 @@ const Steps = () => {
                 <img className="max-w-9"src={assets.upload_icon} alt="" />
                 <div>
                     <p className='text-xl font-medium'>Upload your image</p>
-                    <p className='text-sm text-neutral-500 mt-1'>Demo text. This is a demo text.</p> {/*add <br /> tag if you need to separate into 2 lines */}
+                    <p className='text-sm text-neutral-500 mt-1'>Choose an image of your liking </p> {/*add <br /> tag if you need to separate into 2 lines */}
                 </div>
             </div>
 
@@ -20,7 +20,7 @@ const Steps = () => {
                 <img className="max-w-9"src={assets.remove_bg_icon} alt="" />
                 <div>
                     <p className='text-xl font-medium'>Remove Background</p>
-                    <p className='text-sm text-neutral-500 mt-1'>Demo text. This is a demo text.</p> {/*add <br /> tag if you need to separate into 2 lines */}
+                    <p className='text-sm text-neutral-500 mt-1'>Let AI transform your image</p> {/*add <br /> tag if you need to separate into 2 lines */}
                 </div>
             </div>
 
@@ -28,7 +28,7 @@ const Steps = () => {
                 <img className="max-w-9"src={assets.download_icon} alt="" />
                 <div>
                     <p className='text-xl font-medium'>Download Image</p>
-                    <p className='text-sm text-neutral-500 mt-1'>Demo text. This is a demo text.</p> {/*add <br /> tag if you need to separate into 2 lines */}
+                    <p className='text-sm text-neutral-500 mt-1'>Download the new image as a .jpg or .png</p> {/*add <br /> tag if you need to separate into 2 lines */}
                 </div>
             </div>
         </div>

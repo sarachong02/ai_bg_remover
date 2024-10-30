@@ -64,4 +64,23 @@ const clerkWebhooks = async (request, response) => {
     }
 }
 
-export {clerkWebhooks}
+
+
+//API Controller function to get user available credits data
+const userCredits = async (request, response) => {
+    try {
+
+        const { clerkId } = request.body
+
+        const userData = await UserModel.findOne({clerkId})
+        console.log("user",user);
+
+        response.json({success:true, credits:userData.creditBalance})
+        
+    } catch (error) {
+        console.log(error.message)
+        response.json({success:false, message:error.message})
+    }
+}
+
+export {clerkWebhooks, userCredits}
