@@ -26,3 +26,33 @@
 .bg-layer {
     background-image: url(/bg_layer.png);
 }
+
+
+/* Slider thumb styles */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px; /* Width of the thumb */
+    height: 24px; /* Height of the thumb */
+    border-radius: 50%; /* Circular thumb */
+    background: #00BCD4; /* Color of the thumb */
+    opacity: 95%;
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #00BCD4;
+    cursor: pointer;
+}
+
+.slider::-ms-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #00BCD4;
+    cursor: pointer;
+}
+

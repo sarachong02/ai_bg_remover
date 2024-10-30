@@ -8,7 +8,7 @@ const Upload = () => {
 
   return (
     <div className='pb-16'>
-        <h1 className='text-center text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold bg-gradient-to-r from-blue-800 to-indigo-900 bg-clip-text text-transparent bg-clip-text text-transparent py-6 md:py-16'>See the Magic. <br />Upload Your Image.</h1>
+        <h1 className='text-center text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold bg-gradient-to-r from-blue-800 to-indigo-900 bg-clip-text text-transparent py-6 md:py-16'>See the Magic. <br />Upload Your Image.</h1>
 
         <div className='text-center mb-24'>
                 <input onChange={e => removeBg(e.target.files[0])} type="file" accept="image/*" id="upload2" hidden/> {/* goes into local files */}
